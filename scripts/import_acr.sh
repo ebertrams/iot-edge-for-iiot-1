@@ -54,8 +54,6 @@ done
 if [ ! -z $subscription ]; then
     az account set --subscription $subscription
 fi
-# subscriptionName=$(az account show --query 'name' -o tsv)
-# echo "Executing script with Azure Subscription: ${subscriptionName}" 
 
 # Parse the configuration file to get the ACR credentials info
 source ${scriptFolder}/parseConfigFile.sh $configFilePath
@@ -90,6 +88,6 @@ az acr import --name $acrName --force --source mcr.microsoft.com/azureiotedge-di
 echo "API proxy..."
 az acr import --name $acrName --force --source mcr.microsoft.com/azureiotedge-api-proxy:latest --image azureiotedge-api-proxy:latest
 echo "Simulated temperature sensor..."
-az acr import --name $acrName --force --source mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:latest --image azureiotedge-simulated-temperature-sensor:latest
+az acr import --name $acrName --force --source mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0 --image azureiotedge-simulated-temperature-sensor:1.0
 echo "...done"
 echo ""
